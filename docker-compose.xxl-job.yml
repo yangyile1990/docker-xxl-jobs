@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  xxl_jobs:
+    container_name: xxl_jobs_container
+    image: xuxueli/xxl-job-admin:2.4.0
+    ports:
+      - 8080:8080
+    volumes:
+      - xxl_jobs-applogs:/data/applogs
+      - ./application.properties:/application.properties
+    environment:
+      - PARAMS=--spring.config.location=/application.properties
+    networks:
+      - xxl_jobs_networks
+
+  xxl_jobs_mysql:
+    container_name: xxl_jobs_mysql_container
+    image: mysql:8.3.0
+    volumes:
+      - xxl_jobs_mysql-data:/var/lib/mysql
+      - xxl_jobs_mysql-log:/var/log/mysql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    networks:
+      - xxl_jobs_networks
+
+networks:
+  xxl_jobs_networks:
+    driver: bridge
+volumes:
+  xxl_jobs-applogs:
+  xxl_jobs_mysql-data:
+  xxl_jobs_mysql-log:

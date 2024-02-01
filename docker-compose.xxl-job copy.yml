@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  xxl-jobs:
+  xxl_jobs:
     container_name: xxl_jobs_container
     image: xuxueli/xxl-job-admin:2.4.0
     ports:
@@ -14,7 +14,7 @@ services:
     networks:
       - xxl_jobs_networks
 
-  xxl-jobs-mysql:
+  xxl_jobs_mysql:
     container_name: xxl_jobs_mysql_container
     image: mysql:8.3.0
     volumes:

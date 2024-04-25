@@ -18,8 +18,8 @@ services:
     container_name: xxl_jobs_mysql_container
     image: mysql:8.3.0
     volumes:
-      - xxl-jobs_mysql-data:/var/lib/mysql
-      - xxl-jobs_mysql-log:/var/log/mysql
+      - xxl-jobs-mysql-data:/var/lib/mysql
+      - xxl-jobs-mysql-log:/var/log/mysql
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
@@ -31,5 +31,5 @@ networks:
     driver: bridge
 volumes:
   xxl-jobs-applogs:
-  xxl-jobs_mysql-data:
-  xxl-jobs_mysql-log:
+  xxl-jobs-mysql-data:
+  xxl-jobs-mysql-log:
